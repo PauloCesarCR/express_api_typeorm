@@ -8,7 +8,11 @@
 
 - execute: docker compose --build
 
-#### STEP TWO
+### STEP TWO
+
+- update .env for connect db in docker container
+
+#### STEP THREE
 
 - TEST THE API IN localhost:3000
 
