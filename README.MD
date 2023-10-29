@@ -11,3 +11,12 @@
 #### STEP TWO
 
 - TEST THE API IN localhost:3000
+
+#### Utilized
+
+- TypeScript
+- Express
+- TypeORM ( no Migrations )
+- PostgreSQL
+- camelCase
+- Docker - Docker Compose
