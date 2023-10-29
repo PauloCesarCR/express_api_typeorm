@@ -1,12 +1,10 @@
-const pokeAPi = require("./services/api");
+import { pokeApi } from './services/api';
 
-async function getPokemonData(name: string) {
+export async function getPokemonData(name: string) {
     try {
-        const response = await pokeAPi.get(name);
+        const response = await pokeApi.get(name);
         return response.data;
     } catch (error) {
         return new Error(`${name}`);
     }
 }
-
-module.exports = { getPokemonData };

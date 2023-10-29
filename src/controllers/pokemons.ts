@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-const { getPokemonData } = require("../utility");
+import { getPokemonData } from '../utility';
 import { Iteam } from '../interfaces/IPokes';
 import { GetTeamsObject } from '../interfaces/IPokes';
 import { Teams } from '../entity/poke';
@@ -11,7 +11,7 @@ const registerTeam = async (req: Request, res: Response) => {
   const pokemonsNotFound: string[] = []
   try {
 
-    if (!user.trim() || team.length == 0) {
+    if (!user.trim() || team.some((name: string) => name.trim() == "")) {
       return res.status(404).json(`Campos vazios não são permitidos`)
     }
 
@@ -19,6 +19,7 @@ const registerTeam = async (req: Request, res: Response) => {
     const pokemonDataList = await Promise.all(pokemonDataPromises);
 
     pokemonDataList.forEach((data) => {
+
       if (!data.message) {
         const { id, name, weight, height } = data;
         pokesAdd.push({ id, name, weight, height });
@@ -28,7 +29,7 @@ const registerTeam = async (req: Request, res: Response) => {
     });
 
     if (pokemonsNotFound.length > 0) {
-      return res.status(404).json(`Pokemon(s) não encontrado, verifique o nome e tente novamente |  ${pokemonsNotFound.toString()} `)
+      return res.status(404).json(`Pokemon(s) não encontrado(s) -> ${pokemonsNotFound.toString()} `)
     }
 
     const newTeam = new Teams()

@@ -1,7 +1,5 @@
-const axios = require("axios");
+import axios from 'axios';
 
-const pokeApi = axios.create({
+export const pokeApi = axios.create({
   baseURL: "https://pokeapi.co/api/v2/pokemon/",
 });
-
-module.exports = pokeApi;
